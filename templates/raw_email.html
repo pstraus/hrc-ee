@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container" id="search_container">
+		<h1>Enter Search Query (for giggles)</h1><br>
+		<form action="" method="post" name="hrc">
+			{{ form.hidden_tag() }}
+			<p>
+				{{ form.search()}}
+			</p>
+			<p><input type="submit" value="Search"></p>
+		</form>
+	</div>
+	
+	<!-- Search results go here -->
+	<div class="container results-container">
+		<h1>FOI Request: {{docnumber}}</h1>
+
+		<br>
+		{% for line in raw_email %}
+			{{line}}
+			{% if not loop.last %}
+				<br />
+			{% endif %}
+		{% endfor %}
+	</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{%block content%}
+	{{figure}}
+{%endblock content%}
+{#% block content %}
+	<div class="container" id="search_container">
+		<h1>Enter Search Query (for giggles)</h1><br>
+		<form action="" method="post" name="hrc">
+			{{ form.hidden_tag() }}
+			<p>
+				{{ form.search()}}
+			</p>
+			<p><input type="submit" value="Search"></p>
+		</form>
+	</div>
+	
+	<!-- Search results go here -->
+	<div class="container search-container">
+		<br>
+		{% for result in results %}
+			<div class="col-md-4"<p><a href= {{  url_for('.raw_email', stype = stype, docnumber=result.docnumber) }}>
+				<b>FOID Req. #: {{result.docnumber}}</b></a>
+			</div>
+			<div class="col-md-4"><p>From: {{result.extractedfrom}} to: {{result.extractedto}}</p>
+			</div>
+			<div class="col-md-4">
+				<p>Date: {{result.extracteddatesent}}</p>
+			</div>
+			<div class="col-md-12">
+				<p>Subj.: {{result.extractedsubject}}</p>
+			</div>	
+			<div class="col-md-12">
+				<p>Summary here</p>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %#}

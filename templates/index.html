@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container" id="search_container">
+		<h1>Enter Search Query</h1><br>
+		<form action="" method="post" name="hrc">
+			{{form.hidden_tag()}}
+			<p><input type="submit" value="Search"></p>
+			<p>{{ form.search }} Search </p>
+		</form>
+	<!-- Search type selector -->
+	<div>
+	{% for search_type in search_types %}
+		
+		{% if (stype != search_type['key']) %}
+			<a href={{url_for('.hello', stype=search_type['key'])}}>{{search_type['type']}}</a>
+		{% else %}
+			{{search_type['type']}}
+		{% endif %}
+		{% if not loop.last %}
+			|
+		{% endif %}
+	{% endfor %}
+	</div>
+	</div>
+{% endblock %}
